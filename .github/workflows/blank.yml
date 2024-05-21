@@ -35,34 +35,43 @@ jobs:
     - name: Install dependencies
       run: pip install pyinstaller
 
-    - name: Create main.py
-      run: |
-        echo "import pars" >> main.py
-        echo "import json_składnia" >> main.py
-        echo "import json_zgodność" >> main.py
-        echo "import yaml_weryfikacja" >> main.py
-        echo "import yaml_zgodność" >> main.py
-        echo "import xml_weryfikacja" >> main.py
-        echo "import xml_zgodność" >> main.py
-        echo "" >> main.py
-        echo "def main():" >> main.py
-        echo "    pars.some_function()" >> main.py
-        echo "    json_składnia.some_function()" >> main.py
-        echo "    json_zgodność.some_function()" >> main.py
-        echo "    yaml_weryfikacja.some_function()" >> main.py
-        echo "    yaml_zgodność.some_function()" >> main.py
-        echo "    xml_weryfikacja.some_function()" >> main.py
-        echo "    xml_zgodność.some_function()" >> main.py
-        echo "" >> main.py
-        echo "if __name__ == \"__main__\":" >> main.py
-        echo "    main()" >> main.py
-
-    - name: Build single exe from main.py
-      run: pyinstaller --onefile main.py
+    - name: Build exe for pars.py
+      run: pyinstaller --onefile pars.py
       working-directory: ${{ github.workspace }}
 
-    - name: Upload exe file
+    - name: Build exe for json_składnia.py
+      run: pyinstaller --onefile json_składnia.py
+      working-directory: ${{ github.workspace }}
+
+    - name: Build exe for json_zgodność.py
+      run: pyinstaller --onefile json_zgodność.py
+      working-directory: ${{ github.workspace }}
+
+    - name: Build exe for yaml_weryfikacja.py
+      run: pyinstaller --onefile yaml_weryfikacja.py
+      working-directory: ${{ github.workspace }}
+
+    - name: Build exe for yaml_zgodność.py
+      run: pyinstaller --onefile yaml_zgodność.py
+      working-directory: ${{ github.workspace }}
+
+    - name: Build exe for xml_weryfikacja.py
+      run: pyinstaller --onefile xml_weryfikacja.py
+      working-directory: ${{ github.workspace }}
+
+    - name: Build exe for xml_zgodność.py
+      run: pyinstaller --onefile xml_zgodność.py
+      working-directory: ${{ github.workspace }}
+
+    - name: Upload exe files
       uses: actions/upload-artifact@v4
       with:
-        name: exe-file
-        path: dist/main
+        name: exe-files
+        path: |
+          dist/pars
+          dist/json_składnia
+          dist/json_zgodność
+          dist/yaml_weryfikacja
+          dist/yaml_zgodność
+          dist/xml_weryfikacja
+          dist/xml_zgodność
