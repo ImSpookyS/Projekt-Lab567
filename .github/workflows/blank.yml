@@ -14,10 +14,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: 3.x
 
@@ -53,14 +53,14 @@ jobs:
       working-directory: ${{ github.workspace }}
 
     - name: Upload exe files
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: exe-files
         path: |
-          pars.py
-          json_składnia.py
-          json_zgodność.py
-          yaml_weryfikacja.py
-          yaml_zgodność.py
-          xml_weryfikacja.py
-          xml_zgodność.py
+          dist/pars
+          dist/json_składnia
+          dist/json_zgodność
+          dist/yaml_weryfikacja
+          dist/yaml_zgodność
+          dist/xml_weryfikacja
+          dist/xml_zgodność
